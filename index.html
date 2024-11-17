@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TinyMCE LocalStorage</title>
+    <script
+      src="https://cdn.tiny.cloud/1/8xq295b8mgft0d6mmp0qlhyiiouzyokfh8r0f3lt8qd30tys/tinymce/7/tinymce.min.js"
+      referrerpolicy="origin"
+    ></script>
+
+    <script>
+      tinymce.init({
+        selector: "#myTextarea",
+      });
+    </script>
+    <style>
+      body {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript localStorage demo</h1>
+    <textarea id="myTextarea" rows="10" cols="80"></textarea>
+    <p></p>
+    <button onclick="saveContent()">Save</button>
+    <button onclick="loadContent()">Load</button>
+    <script>
+      function saveContent() {
+        var myContent = tinymce.activeEditor.getContent("myTextarea");
+        localStorage.setItem("myContent", myContent);
+      }
+
+      function loadContent() {
+        var myContent = localStorage.getItem("myContent");
+        tinymce.activeEditor.setContent(myContent);
+      }
+    </script>
+  </body>
+</html>
